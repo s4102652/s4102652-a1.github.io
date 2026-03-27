@@ -1,0 +1,2208 @@
+/* phần font*/
+
+@font-face {
+
+font-family: 'PixelScript';
+
+/* Đường dẫn đến file font của bạn */
+
+src: url('font/PF\ Pixelscript\ Pro\ Regular.ttf') format('truetype');
+
+font-weight: normal;
+
+font-style: normal;
+
+}
+
+
+
+html {
+
+height: 100%;
+
+width: 100%;
+
+margin: 0;
+
+padding: 0;
+
+}
+
+* {
+
+box-sizing: border-box;
+
+}
+
+/* ========== PRELOADER STYLE ========== */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000; /* Nền đen tuyền */
+    z-index: 30000; /* Cao nhất để che mọi thứ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease; /* Hiệu ứng biến mất mượt mà */
+}
+
+#preloader::after {
+    content: url('image/sprite/paper-sec2.png') url('image/sprite/go-awayfx.png') url('image/sprite/monsterglitch.png');
+    display: none;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loading-text {
+    font-family: 'Pixelify Sans', sans-serif;
+    color: #9D5FA5;
+    font-size: 2vw;
+    margin-bottom: 20px;
+    letter-spacing: 5px;
+    animation: blink 1s infinite;
+}
+
+.progress-container {
+    width: 300px;
+    height: 10px;
+    border: 2px solid #9D5FA5;
+    padding: 2px;
+}
+
+.progress-bar {
+    width: 0%; /* Sẽ tăng dần bằng JS */
+    height: 100%;
+    background-color: #FFF;
+    transition: width 0.2s;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+
+/* ========== END PRELOADER STYLE ========== */
+
+.section1 {
+
+position: relative;
+
+width: 100%;
+
+min-height: 100vh;
+
+}
+
+
+
+.intro-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 11000;
+  background-color: #000;
+  overflow: hidden;
+  transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+
+
+.intro-screen.slide-up {
+
+transform: translateY(-100%);
+
+}
+
+
+
+.intro-layer {
+
+position: absolute;
+
+top: 0;
+
+left: 0;
+
+width: 100%;
+
+height: 100%;
+
+object-fit: cover;
+
+}
+
+
+.intro-light, 
+.intro-frame, 
+.intro-logo, 
+.intro-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Giúp ảnh luôn phủ kín mà không bị méo */
+}
+
+
+.intro-light { z-index: 2; }
+.intro-frame { z-index: 3; pointer-events: none; }
+.intro-logo { z-index: 4; pointer-events: none; }
+
+
+/* Giữ nguyên đoạn duplicate này của bạn để không mất code */
+
+.intro-bg {
+  z-index: 1;
+  width: 120%; /* Rộng hơn một chút để có chỗ chạy animation trượt */
+  left: -5%;
+  animation: bgSlide 7s ease-in-out infinite alternate;
+}
+
+
+
+.play-text-wrapper {
+
+position: absolute;
+
+top: 0;
+
+left: 0;
+
+width: 100%;
+
+height: 100%;
+
+display: flex;
+
+justify-content: center;
+
+align-items: center;
+
+z-index: 10;
+
+}
+
+.sound-toggle-text {
+    position: absolute;
+    margin-top: 45%;
+    left: 42.5%;
+    font-family: "Pixelify Sans", sans-serif;
+    color: #FFF;
+    font-size: 2.5vw;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #9D5FA5;
+    font-weight: 700;
+    z-index: 15;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0;
+    animation: slideFadeIn 1.5s ease-out forwards 0.5s;
+    transition: transform 0.2s, color 0.2s, text-shadow 0.2s;
+}
+
+.sound-toggle-text:hover {
+    transform: translateX(-50%) scale(1.1);
+    color: #9D5FA5;
+    -webkit-text-stroke: 1px #FFF;
+    text-shadow: 0 0 10px white;
+}
+
+.play-text {
+
+font-family: "Pixelify Sans", sans-serif;
+
+font-optical-sizing: auto;
+
+font-weight: 700;
+
+font-style: normal;
+
+color: #FFF;
+
+-webkit-text-stroke-width: 8px;
+
+-webkit-text-stroke-color: #9D5FA5;
+
+font-size: 4vw;
+
+paint-order: stroke fill;
+
+backdrop-filter: blur(2px);
+
+z-index: 15;
+
+opacity: 0;
+
+animation:
+
+slideFadeIn 1.5s ease-out forwards,
+
+mistyGlow 3s ease-in-out infinite 1.5s;
+transition: transform 0.2s, color 0.2s, text-shadow 0.2s;
+margin-top: 53%;
+cursor: pointer;      /* Hiện hình bàn tay khi hover */
+user-select: none;
+
+}
+
+
+
+.play-text:hover {
+
+transform: scale(1.1);
+
+color: #9D5FA5;
+
+-webkit-text-stroke: 4px #FFF;
+
+}
+
+
+
+.dust-overlay {
+
+position: absolute;
+
+top: 0;
+
+left: 0;
+
+width: 100%;
+
+height: 100%;
+
+z-index: 50;
+
+pointer-events: none;
+
+background-image:
+
+radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+
+radial-gradient(circle, rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px);
+
+background-size: 100px 100px, 150px 150px;
+
+opacity: 0.8;
+
+animation: dustMove 20s linear infinite;
+
+background-color: rgba(0, 0, 0, 0.02);
+
+backdrop-filter: contrast(1.1) brightness(0.9);
+
+}
+
+
+
+body {
+
+height: 100%;
+
+width: 100%;
+
+margin: 0;
+
+padding: 0;
+
+background-color: #b587bc;
+
+overflow-x: hidden;
+
+overflow-y: auto;
+
+}
+
+
+
+.khung {
+
+position: absolute;
+
+top: 0;
+
+left: 0;
+
+width: 100%;
+
+height: auto;
+
+z-index: 10002;
+
+pointer-events: none;
+
+}
+
+
+
+.light-flash {
+
+position: fixed;
+
+top: 0;
+
+left: 0;
+
+width: 2360px;
+
+height: 1640px;
+
+z-index: 999999; /* Đẩy lên cực cao */
+
+pointer-events: none;
+
+opacity: 0;
+
+background-color: white;
+
+}
+
+
+
+.container-room-on, .container-room-off {
+
+position: relative;
+
+width: 100%;
+
+height: auto;
+
+margin: 0;
+
+}
+
+
+
+.room-on, .room-off {
+
+display: block;
+
+width: 100%;
+
+height: auto;
+
+}
+
+
+
+.ceiling-fan, .ceiling-fan-off {
+
+position: absolute;
+
+top: -3%;
+
+left: 36.5%;
+
+width: 25%;
+
+cursor: pointer;
+
+transition: filter 0.3s ease, transform 0.3s ease;
+
+z-index: 10;
+
+}
+
+
+
+.ceiling-fan:hover { filter: drop-shadow(0 0 10px rgb(156, 93, 152)); }
+
+.ceiling-fan-off:hover { filter: drop-shadow(0 0 10px white); }
+
+.ceiling-fan:active, .ceiling-fan-off:active { transform: scale(0.8); }
+
+
+
+/* --- PHẦN SỬA DUY NHẤT CHO CON MẮT --- */
+
+.eyes {
+
+position: absolute;
+
+top: 37.3%;
+
+left: 65%;
+
+width: 10%; /* THÊM DÒNG NÀY: Để kích thước mắt co dãn theo phòng */
+
+height: auto; /* THÊM DÒNG NÀY: Giữ đúng tỷ lệ ảnh mắt */
+
+display: none;
+
+pointer-events: none;
+
+z-index: 11;
+
+animation: eyePulse 2s ease-in-out infinite;
+
+}
+
+
+
+.first-sentence, .second-sentence, .third-sentence {
+
+position: absolute;
+
+font-family: 'PixelScript', sans-serif; /* ĐỔI SANG FONT MỚI */
+
+font-size: 1vw;
+
+color: #FFF;
+
+-webkit-text-stroke: 0.2vw #9D5FA5;
+
+z-index: 15;
+
+}
+
+
+
+.first-sentence {
+
+font-optical-sizing: auto;
+
+color: #FFF;
+
+-webkit-text-stroke-width: 3px;
+
+-webkit-text-stroke-color: #9D5FA5;
+
+font-size: 1vw;
+
+paint-order: stroke fill;
+
+backdrop-filter: blur(2px);
+
+animation: mistyGlow 3s ease-in-out infinite;
+
+z-index: 15;
+
+opacity: 0;
+
+animation:
+
+slideFadeIn 1.5s ease-out forwards,
+
+mistyGlow 3s ease-in-out infinite 1.5s;
+
+}
+
+
+
+.second-sentence, .third-sentence {
+
+font-optical-sizing: auto;
+
+text-align: right;
+
+color: #FFF;
+
+-webkit-text-stroke-width: 3px;
+
+-webkit-text-stroke-color: #9D5FA5;
+
+font-size: 1vw;
+
+paint-order: stroke fill;
+
+backdrop-filter: blur(2px);
+
+z-index: 15;
+
+opacity: 0;
+
+animation:
+
+slideFadeIn 1.5s ease-out forwards,
+
+mistyGlow 3s ease-in-out infinite 1.5s;
+
+display: none;
+
+}
+
+
+
+#câu2, #câu2b, #câu3 { display: none; }
+
+#câu1 { top: 17%; left: 6%; animation-delay: 0.3s; }
+
+#câu1b { top: 59%; left: 20%; animation-delay: 1.5s, 3s; }
+
+#câu2 { top: 31%; left: 40%; }
+
+#câu2b { top: 43%; left: 46%; }
+
+#câu3 { top: 56%; left: 33%; }
+
+
+
+.door {
+
+position: absolute;
+
+top: 28.5%;
+
+left: 16.5%;
+
+width: 26%;
+
+cursor: pointer;
+
+transition: filter 0.3s ease, transform 0.3s ease;
+
+z-index: 10;
+
+}
+
+
+
+.door:hover { filter: drop-shadow(0 0 10px rgb(156, 93, 152)); }
+
+.door:active { transform: scale(0.98); }
+
+
+
+.wardrobe-off {
+
+position: absolute;
+
+bottom: 19.4%;
+
+right: 17.25%;
+
+width: 25.4%;
+
+cursor: pointer;
+
+transition: filter 0.3s ease, transform 0.3s ease;
+
+z-index: 10;
+
+pointer-events: none;
+
+filter: brightness(0.7);
+
+}
+
+
+
+.wardrobe-off.unlocked {
+
+pointer-events: auto;
+
+filter: brightness(1) grayscale(0);
+
+cursor: pointer;
+
+}
+
+
+
+.wardrobe-off.unlocked:hover {
+
+filter: drop-shadow(0 0 10px white);
+
+transform: scale(1.02);
+
+}
+
+
+
+.wardrobe-off:active { transform: scale(0.95); }
+
+
+
+.logo {
+
+position: absolute;
+
+top: 13%;
+
+left: 1%;
+
+width: 50%;
+
+transform: rotate(5deg);
+
+cursor: pointer;
+
+transition: filter 0.3s ease, transform 0.3s ease;
+
+}
+
+
+
+.logo:hover {
+
+filter:
+
+drop-shadow(0.1px 0 0 rgb(78, 75, 75))
+
+drop-shadow(0.1px 0 0 rgb(78, 75, 75))
+
+drop-shadow(0 0.1px 0 rgb(78, 75, 75))
+
+drop-shadow(0 -0.1px 0 rgb(78, 75, 75));
+transform: scale(1.05) rotate(4deg);
+
+}
+
+
+
+.logo:active { transform: scale(0.95); }
+
+
+
+#pounced-trigger {
+
+color: #660000;
+
+-webkit-text-stroke-color: #330000;
+
+transition: all 0.3s ease;
+
+}
+
+
+
+#pounced-trigger:hover {
+
+color: #6f0000;
+
+text-shadow: 0 0 20px #aa0000;
+
+}
+
+
+/* ========== section 2 ========== */
+
+.smoke-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400px; /* Độ rộng của dải khói tỏa xuống */
+    z-index: 0;   /* Phải nằm trên cả giường và cô bé (z-index: 10) */
+    pointer-events: none;
+
+    /* LỚP 1: Màu tím đặc ở đỉnh */
+    background: linear-gradient(to bottom, 
+        #5a3760 0%,     /* Đậm đặc nhất ở trên cùng */
+        #74477c 60%,  /* Vẫn còn dày */
+        #995da3 80%,  /* Bắt đầu loãng ra */
+        transparent 100%              /* Tan biến hoàn toàn */
+    );
+
+    /* LỚP 2: Tạo hiệu ứng nhòe để nhìn giống sương mù thực thụ */
+    filter: blur(40px);
+    
+    /* LỚP 3: Thêm hiệu ứng phập phồng để khói nhìn như đang chuyển động */
+    animation: smokeRolling 6s ease-in-out infinite alternate;
+    opacity: 0.9;
+}
+
+.section2 {
+position: relative;
+    width: 100%;
+    height: 780vh; /* Tăng chiều cao để có không gian lướt */
+    background-color: #b587bc;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.shadow-sec2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 1; /* Nằm dưới cô bé và gấu bông */
+    pointer-events: none; /* Cho phép click xuyên qua */
+    filter:brightness(0.9);
+}
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 0; /* Nằm trên khói nhưng dưới cô bé */
+    pointer-events: none; /* Cho phép click xuyên qua */
+    filter: drop-shadow(0 0 10px white);
+}
+
+
+.girl {
+    position: absolute;
+    top: 400px; 
+    left: 50%;
+    transform: translateX(-50%); /* Căn giữa */
+    width: 75%;
+    height: auto;
+    z-index: 2; /* Nằm trên giường */
+    filter: drop-shadow(0 0 10px rgb(156, 93, 152));
+    cursor: pointer; /* Hiện hình bàn tay khi hover vào */
+    pointer-events: auto; /* Quan trọng: Phải là auto mới click được */
+    cursor: pointer;
+    pointer-events: auto !important;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.girl:hover { filter: drop-shadow(0 0 15px white); }
+
+/* Bong bóng hội thoại */
+.girl-bubble {
+position: absolute;
+    top: 360px;
+    left: 50%;
+    /* 1. ÉP KHUNG PHẢI RỘNG BẰNG ẢNH (70vh) */
+    width: 70vh; 
+    transform: translateX(-50%); 
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    
+    /* Đảm bảo khung không có chiều cao thừa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.girl-bubble img { width: 110%; /* Ảnh bây giờ sẽ lấp đầy cái khung 70vh ở trên */
+    height: auto; }
+
+.girl-bubble p {
+position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; 
+    text-align: center;
+    font-family: 'PixelScript', sans-serif;
+    
+    /* 1. Giữ Font size theo vh để đồng bộ với bong bóng */
+    font-size: 2.5vh; 
+    
+    /* 2. TĂNG KHOẢNG CÁCH DÒNG (Line-height) */
+    /* Dùng số 2 hoặc 2.2 để các dòng chữ "thở" thoải mái hơn */
+    line-height: 2.2; 
+
+    /* 3. TĂNG KHOẢNG CÁCH CHỮ (Letter-spacing) */
+    /* Dùng đơn vị vh để khoảng cách này cũng tự co dãn theo window */
+    letter-spacing: 0.15vh; 
+
+    color: #5a3760;
+    margin: 0;
+    white-space: normal;
+    
+    /* Khử răng cưa cho font pixel khi co dãn */
+    image-rendering: pixelated;
+}
+
+.girl-bubble.show {
+opacity: 1;
+    visibility: visible;
+}
+
+
+.plushie {
+    position: absolute;
+    z-index: 3;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: none;
+    
+    /* Báo trước cho trình duyệt chuẩn bị card đồ họa */
+    will-change: transform;
+    /* Đảm bảo không có transition nào làm khựng chuyển động kéo */
+    transition: none !important;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+
+.plushie:hover { filter: drop-shadow(0 0 10px white); }
+
+.plushie-1 { top: 450px; left: 1%; width: 50%; }
+.plushie-2 { top: 480px; left: 60%; width: 40%; }
+
+.crayon {
+position: absolute;
+    width: 10%;
+    height: auto;
+    z-index: 7;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 20px rgba(172, 104, 181, 0.5));
+    pointer-events: auto;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+#purple { 
+    top: 45%;
+    left: 60%;
+    transform: rotate(25deg);
+ }
+
+ #red { 
+    top: 40%;
+     left: 25%;
+    transform: rotate(75deg)
+}
+#black {
+     top: 35%;
+      left: 22%;
+    transform: rotate(-45deg);
+}
+
+.sketchbook {
+    position: absolute;
+    top: 36%;
+    left: 65%;
+    width: 25%;
+    height: auto;
+    z-index: 7;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 20px rgba(172, 104, 181, 0.5));
+    transform: rotate(-45deg);
+    pointer-events: auto;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+
+#red:hover, #black:hover, #purple:hover, .sketchbook:hover { 
+    filter: drop-shadow(0 0 30px white);
+    transform: rotate(15deg) scale(1.1);
+}
+
+.blanketA {
+  position: absolute;
+  top: 20%;
+  left: 0;
+  width: 100%;
+    height: auto;
+  z-index: 6;
+  pointer-events: none;
+}
+
+
+.blanketB {
+  position: absolute;
+  /* Bắt đầu ngay khi A kết thúc */
+  top: calc(20% + 180.25vw); 
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 5;
+  pointer-events: none;
+  display: block;
+  /* Đè lên 1px để xóa vết nứt giữa 2 ảnh */
+  margin-top: -1vh; 
+}
+.blanketC {
+  position: absolute;
+  /* Bắt đầu ngay khi B kết thúc */
+  top: calc(20% + 297.05vw); 
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 5;
+  pointer-events: none;
+  display: block;
+  margin-top: -2px;
+}
+
+.sec2-end {
+    position: absolute;
+    top: calc(20% + 297.05vw);
+    left: 0;
+    z-index: 4;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+}
+
+.monsterhint {
+    position: absolute;
+    top: calc(20% + 180.25vw); 
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 5;
+    display: none;
+    
+}
+
+.size-sentence {
+    position: absolute;
+    top: calc(20% + 297.2vw);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'PixelScript', sans-serif;
+    color: #FFF;
+    font-size: 1.5vw;
+    z-index: 6;
+    pointer-events: auto; /* Cho phép click vào câu này */
+    cursor: pointer; /* Hiện hình bàn tay khi hover */
+    transition: text-shadow 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+    font-optical-sizing: auto;
+    -webkit-text-stroke-width: 4px;
+    -webkit-text-stroke-color: #9D5FA5;
+    paint-order: stroke fill;
+    animation:
+    mistyGlow 3s ease-in-out infinite 1.5s;
+}
+.size-sentence:hover {
+    text-shadow: 0 0 10px white;
+    transform: scale(1.1);
+}
+
+/* Wrapper cho cục giấy */
+.crumble-pp {
+    position: absolute;
+    /* Định vị tương đối theo Section 2 để nằm trên cái mền ban đầu (CSS top: 20%) */
+    /* === BẠN CẦN TỰ CHỈNH LẠI TOP/LEFT/WIDTH CHO VỪA MẮT === */
+    top: 35%;      /* Nhích lên một tí nếu nó đè xuống quá thấp */
+    left: 48%;     /* Nhích sang trái/phải để cân đối trên mền */
+    width: 35vw;   /* Cục giấy sẽ luôn chiếm 8% chiều ngang màn hình */
+    height: 35vw;
+    transform: translateX(-50%); /* Căn giữa */
+    
+    z-index: 6; /* Cao hơn cái mền (z-index: 5) */
+    cursor: pointer;
+    will-change: top; /* Tối ưu cho scroll */
+    pointer-events: auto !important; /* Đảm bảo hover được */
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 20px rgba(172, 104, 181, 0.3));
+}
+
+.crumble-static {
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(172, 104, 181, 0.3));
+       image-rendering: pixelated;
+    
+}
+
+.crumble-sprite {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('image/sprite/paper-sec2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: none; /* Ẩn mặc định */
+    filter: drop-shadow(0 0 30px white);
+}
+
+/* === TƯƠNG TÁC HOVER CHẠY SPRITE ANIMATION === */
+.crumble-pp:hover .crumble-static {
+    display: none; /* Ẩn ảnh tĩnh */
+}
+
+.crumble-pp:hover .crumble-sprite {
+    display: block; /* Hiện spritesheet */
+    /* === LƯU Ý: Thay số 8 bằng tổng số frames của file paper-sec2.png của bạn === */
+    animation: playCrumble 0.8s steps(11) forwards;
+}
+
+@keyframes playCrumble {
+    from { background-position: 0% 0; }
+    to { background-position: 100% 0; }
+}
+
+/* ==========  Overlay Tranh ========== */
+.drawing-overlay {
+    position: fixed; inset: 0; /* Tràn fullscreen */
+    background-color: rgba(0, 0, 0, 0.9); /* Nền tối */
+    z-index: 100000; /* Cao nhất */
+    display: flex; justify-content: center; align-items: center;
+    cursor: pointer; /* Bấm anywhere để đóng */
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.drawing-container {
+    text-align: center;
+    cursor: default; /* Ngăn con trỏ 'close' khi hover vào tranh/chữ */
+}
+
+.drawing-img {
+    max-width: 70vh; /* Size tranh theo chiều cao màn hình */
+    height: auto;
+    filter: drop-shadow(0 0 20px white);
+}
+
+.drawing-poem {
+    font-family: 'PixelScript', sans-serif;
+    color: #FFF;
+    margin-top: 20px;
+    font-size: 1vw;
+}
+
+/* Các chữ có thể click */
+word-trigger {
+    cursor: pointer;
+    font-weight: bold;
+    transition: text-shadow 0.2s;
+}
+.word-trigger:hover { text-shadow: 0 0 10px white; }
+
+/* Màu đặc biệt cho chữ */
+#trigger-purple { color: #A020F0; 
+cursor: pointer;} /* Purple */
+#trigger-purple.clicked { text-shadow: 0 0 10px #A020F0; cursor: default; }
+
+#trigger-eyes { color: #FF0000;cursor: pointer; } /* Red */
+#trigger-eyes.clicked { text-shadow: 0 0 10px #FF0000; cursor: default; }
+
+/* Vật phẩm nhỏ trên giường */
+.menu-onbed {
+    position: absolute;
+    top: 50%;    /* Tọa độ theo chiều dọc, bạn chỉnh số này để khớp với mền */
+    left: 35%;   /* Tọa độ theo chiều ngang */
+    width: 30vw; /* Độ rộng của thực đơn nhỏ */
+    z-index: 6;  /* Phải cao hơn mền (z-index: 5) */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    image-rendering: pixelated;
+}
+
+.menu-onbed img {
+    width: 100%;
+    height: auto;
+}
+
+.menu-onbed:hover {
+    transform: scale(1.1) rotate(3deg); /* Nhấn nhá một chút khi hover */
+    filter: drop-shadow(0 0 10px white);
+}
+
+/* Overlay hiển thị chi tiết */
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 100001; /* Cao nhất */
+    display: none; /* Mặc định ẩn */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+}
+
+.menu-container { text-align: center; }
+
+.menu-full-img {
+    max-width: 30%;
+    max-height: auto;
+    filter: drop-shadow(0 0 20px #9D5FA5);
+}
+
+.menu-poem {
+    font-family: 'PixelScript', sans-serif;
+    color: #FFF;
+    margin-top: 20px;
+
+font-size: 1vw;
+}
+
+
+/* ========== section 3 ========== */
+
+.section3 {
+    position: relative;
+    width: 100%;
+    height: 175vh;
+    background-color: #b587bc;
+    display: flex;
+}
+
+.c1-s3 {
+    font-family: 'PixelScript', sans-serif;
+    position:absolute;
+    left: 25%;
+    font-optical-sizing: auto;
+    color: #FFF;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #9D5FA5;
+    font-size: 1.5vw;
+    paint-order: stroke fill;
+    backdrop-filter: blur(2px);
+    animation: mistyGlow 3s ease-in-out infinite;
+    z-index: 15;
+    opacity: 0;
+    animation:
+    slideFadeIn 1.5s ease-out forwards,
+    mistyGlow 3s ease-in-out infinite 1.5s;
+    transition: margin-left 0.3s ease, text-shadow 0.3s ease;
+    pointer-events: auto;
+}
+
+.c1-s3:hover, .c2-s3:hover {
+    text-shadow: 0 0 20px white;
+    /* Dùng margin-left thay vì transform để tránh xung đột animation */
+    margin-left: -30px; 
+}
+
+.c2-s3 {
+  position: absolute;
+    top: 15%; 
+    left: 25%;
+    font-family: 'PixelScript', sans-serif;
+    color: #FFF;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #9D5FA5;
+    font-size: 1.5vw;
+    paint-order: stroke fill;
+    backdrop-filter: blur(2px);
+    z-index: 15;
+    
+    /* QUAN TRỌNG: Mặc định là ẩn hoàn toàn và chưa có animation */
+    opacity: 0; 
+    visibility: hidden; 
+    transition: margin-left 0.3s ease,opacity 0.5s ease;
+}
+
+/* Class này sẽ được JS thêm vào khi bẫy sập */
+.c2-s3.visible {
+   opacity: 1;
+    visibility: visible;
+    /* Chỉ cho chạy animation TẠI ĐÂY */
+    animation: 
+        slideFadeIn 1.5s ease-out forwards, 
+        mistyGlow 3s ease-in-out infinite 1.5s;
+}
+
+.sec3-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+    pointer-events: none;
+}
+/* .footprint {
+    position: absolute;
+    top: calc(24% + 297.05vw); 
+    left: 0;
+    width: 100%; 
+    height: auto;
+    z-index: 10; }
+*/
+#footprint2 {
+    position: absolute;
+    top: 35%;
+    right: 0;
+    width: 100%;
+    height: auto;
+    transform: scaleX(-1);
+    z-index: 1;
+}
+
+.sec3-end {
+    position: absolute;
+    bottom:0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 3;
+     pointer-events: none;
+     opacity: 0.8;
+}
+
+.whistle {
+    position: absolute;
+    top: 70%;
+    left: 5%;
+    width: 25%;
+    height: auto;
+    z-index: 10;
+    pointer-events: auto;
+}
+.whistle:hover {
+    transform: scale(1.1) rotate(3deg); /* Nhấn nhá một chút khi hover */
+    filter: drop-shadow(0 0 10px white);
+}
+
+.trap {
+    position: absolute;
+    top: 15%;
+    left: 40%;
+    width: 75%;
+    height: auto;
+    z-index: 10;
+    cursor: pointer;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+/* Ẩn bẫy đã đóng lúc ban đầu */
+.closed-trap {
+    display: none; 
+    position: absolute;
+    top: 15%;
+    left: 40%;
+    width: 75%;
+    height: auto;
+    z-index: 10;
+}
+.c3-s3, .c4-s3 {
+    position: absolute;
+    left: 27%;
+     font-family: 'PixelScript', sans-serif;
+    color: #FFF;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #9D5FA5;
+    font-size: 1.5vw;
+    paint-order: stroke fill;
+    backdrop-filter: blur(2px);
+    z-index: 15;
+    /* Mặc định ẩn */
+    opacity: 0; 
+    visibility: hidden; 
+    transition: margin-left 0.3s ease,opacity 0.5s ease;
+}
+
+#clap-trigger {
+    color: #9D5FA5; /* Màu tím đậm để nổi bật */
+    -webkit-text-stroke-color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Vị trí cụ thể (Bạn hãy chỉnh lại cho khớp với ảnh nền hallway) */
+.c3-s3 { top: 80%; } 
+.c4-s3 { top: 85%; }
+
+/* Hiện lên khi bẫy sập hoặc còi kêu */
+.c3-s3.visible, .c4-s3.visible {
+    opacity: 1;
+    visibility: visible;
+    animation: slideFadeIn 1.5s ease-out forwards;
+}
+
+/* Hiệu ứng hover cho text (như bạn đã làm ở trên) */
+.c3-s3:hover, .c4-s3:hover {
+    text-shadow: 0 0 20px white;
+    margin-left: -30px;
+}
+
+/* section 4 */
+.section4 {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.sec4-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.sec4-start {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25%;
+    width: 100%;
+    height: auto;
+    z-index: 5;
+    pointer-events: none;
+}
+
+#closet-closed {
+    position: absolute;
+    top: 5.6%;
+    left: 32%;
+    width: 38.5%;
+    height: auto;
+    z-index: 4;
+    cursor: pointer;
+    transition: filter 0.3s ease, transform 0.3s ease;
+    
+}
+
+#closet-closed:hover {
+    filter: drop-shadow(0 0 10px white);
+}
+
+#closet-opened {
+    position: absolute;
+    top: 1.5%;
+    left: 12%;
+    width: 78.3%;
+    height: auto;
+    z-index: 4;
+}
+
+/* --- STYLE CHO CHATBOX FADE-IN SECTION 4 --- */
+.chatbox-container {
+    position: fixed;
+    top: 20%; /* Cố định vị trí ở dưới màn hình */
+    left: 40%;
+    transform: translateX(-50%);
+    width: 70%;
+    z-index: 100;
+    
+    /* TRẠNG THÁI BAN ĐẦU: Ẩn hoàn toàn */
+    opacity: 0;
+    visibility: hidden; /* Đảm bảo không bấm nhầm khi đang ẩn */
+    
+    /* HIỆU ỨNG: Chỉ chuyển đổi opacity */
+    transition: opacity 0.5s ease-in-out, visibility 1s;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.4s ease;
+}
+
+/* Khi lướt tới Section 4, class này sẽ được thêm vào */
+.chatbox-container.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.chatbox-img {
+    width: 100%;
+    height: auto;
+    top:35%
+}
+
+.poem-text {
+    position: absolute;
+    top: 62.5%;
+    left: 57%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    text-align: center;
+    font-family: "Pixelify Sans";
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #9D5FA5;
+    font-size: 1.8vw;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+
+.animate-text {
+animation: poemFadeIn 0.8s ease-in-out forwards;}
+
+/* Trạng thái mặc định của huff, and, puff */
+.breath-element {
+  position: absolute; /* Để bạn dễ căn chỉnh vị trí trong tủ đồ */
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.5s ease;
+  pointer-events: none; /* Tránh việc click nhầm vào SVG */
+  z-index: 10;
+}
+
+/* Class này sẽ được thêm vào bằng JS khi bấm [X] */
+.is-breathing {
+  opacity: 0.8 !important;
+  animation: pixelBreathe 1.5s ease-in-out infinite;
+  pointer-events: auto;
+}
+
+/* Chia delay để 3 cái thở lệch nhịp nhau cho tự nhiên */
+.huff { top: 20%; left: 35%; animation-delay: 0s; width: 30%; height:auto; image-rendering: pixelated; filter: drop-shadow(0 0 10px rgb(119, 44, 117));}
+.and  { top: 35%; left: 40%; animation-delay: 0.3s; width: 15%; height:auto; image-rendering: pixelated; filter: drop-shadow(0 0 10px rgb(119, 44, 117));}
+.puff { top: 45%; left: 36%; animation-delay: 0.6s; width: 30%; height:auto; image-rendering: pixelated; filter: drop-shadow(0 0 10px rgb(119, 44, 117));}
+
+.huff:hover, .and:hover, .puff:hover {
+    opacity: 0 !important;           
+    transform: scale(1.5) !important; 
+    animation: none !important;        
+    transition: all 0.4s ease;
+}
+
+
+.next-hint {
+    position: absolute;
+    top: 85%; /* Bạn có thể chỉnh lại 82-85% tùy độ cao chatbox */
+    left: 23%; /* Để 50% để căn giữa hoàn hảo theo chiều ngang */
+    transform: translate(-50%, 10px); /* Bắt đầu hơi thấp xuống 1 chút */
+    width: 90%;
+    text-align: center;
+    font-family: "Pixelify Sans";
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #9D5FA5;
+    font-size: 1.8vw;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Class kích hoạt animation */
+.hint-fade-in {
+    visibility: visible !important;
+    /* Kết hợp 2 animation: Hiện lên và Nhấp nháy */
+    animation: hintFade 1s ease forwards, hintBlink 2s infinite 1s;
+}
+
+#sec4-flashlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Z-index: 10 (Cao hơn ảnh nền và tủ (z=4), nhưng thấp hơn Chatbox (z=100)) */
+    z-index: 11; 
+    
+    /* Quan trọng: Cho phép click xuyên qua để bấm được cái tủ */
+    pointer-events: none; 
+
+    /* Tạo lớp phủ màu #000012 với độ mờ 0.77 */
+    /* Vòng tròn sáng sẽ đi theo biến --mouse-x và --mouse-y từ JS */
+    background: radial-gradient(
+        circle 15vw at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+        transparent 0%, 
+        rgba(0, 0, 18, 0.77) 100%
+    );
+}
+
+/* ==========  Section 5a ========== */
+
+.section5 {
+    position: relative;
+    width: 100%;
+min-height: 150vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+
+.sec5-bg {
+    position: absolute;
+    top: 0%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.sec5-start {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.table {
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 5;
+    pointer-events: auto;
+    filter: drop-shadow(0 0 10px rgb(24, 13, 23));
+}
+
+.lid {
+    position: absolute;
+    top: 39%;
+    left: 23.8%;
+    width: 56.5%;
+    height: auto;
+    z-index: 6; /* Phải cao hơn cái bàn (z-index: 5) */
+    pointer-events: auto;
+    filter: drop-shadow(0 0 10px rgb(24, 13, 23));
+    transition: filter 0.3s ease, transform 0.3s ease;
+
+}
+
+.lid:hover {
+    top: 15%;
+    filter: drop-shadow(0 0 10px white);
+    transition: filter 0.3s ease, transform 0.3s ease;
+
+}
+
+.curtain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 999900; /* Đẩy lên cao để che được các phần tử khác khi lướt tới */
+    pointer-events: none;
+    
+    /* TRẠNG THÁI BAN ĐẦU: Ẩn hoàn toàn */
+    opacity: 0;
+    visibility: hidden;
+    
+    /* Hiệu ứng hiện ra mượt mà */
+    transition: opacity 0.3s ease-in-out, visibility 0.3s;
+}
+.curtain.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.monsterA {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 60%;
+    height: auto;
+    z-index: 4; /* Phải cao hơn cái bàn và nắp (z-index: 5-6) */
+    pointer-events: auto;
+    cursor: help;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.monsterA:hover {
+    filter: drop-shadow(0 0 10px white);
+}
+
+.c1-s5 {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'PixelScript', sans-serif;
+    color: #FFF;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #9D5FA5;
+    font-size: 1.4vw;
+    paint-order: stroke fill;
+    backdrop-filter: blur(2px);
+    z-index: 15;
+}
+
+.c2-s5 {
+    position: absolute;
+    top: 60%; /* Nằm trên cái nắp một chút */
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5); /* Mặc định nhỏ xíu */
+    
+    font-family: 'PixelScript', sans-serif;
+    color: #ffffff;
+    font-size: 1.4vw;
+    text-align: center;
+    z-index: 20;
+    
+    /* TRẠNG THÁI BAN ĐẦU */
+    opacity: 0;
+    pointer-events: none; /* Không cản trở việc click cái nắp */
+    
+    /* HIỆU ỨNG BIẾN ĐỔI: Sử dụng cubic-bezier để có độ nẩy khi phóng to */
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Khi Hover vào cái nắp, JS sẽ kích hoạt class này */
+.c2-s5.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.3); /* Phóng to ra 1.3 lần */
+    text-shadow: 0 0 20px white;
+}
+
+/* -- section 5b --*/
+.section5b{
+    position: relative;
+    width: 100%;
+    min-height: 150vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    background: black;
+}  
+.sec5b-bg {
+    position: absolute;
+    top: 17%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.sec5-floor {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    z-index: 2;
+}
+.sec5-topshadow {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    z-index: 3;
+}
+
+
+.sec5-shadow {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.c3-s5 {
+    position: absolute;
+    top: 60%;
+    left: 25%;
+    font-family: 'PixelScript', sans-serif;
+    color: #FFF;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #9D5FA5;
+    font-size: 1.4vw;
+    paint-order: stroke fill;
+    backdrop-filter: blur(2px);
+    z-index: 15;
+    animation: mistyGlow 3s ease-in-out infinite 1.5s;
+}
+
+.yellow-star {
+    position: absolute;
+    top: 70%;
+    left: 10%;
+    width: 25%;
+    z-index: 15;
+    pointer-events: auto;
+}
+
+.yellow-star2 {
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    width: 5%;
+    z-index: 15;
+    pointer-events: auto;
+}
+
+.purple-star {
+    position: absolute;
+    top: 45%;
+    left: 65%;
+    width: 5%;
+    z-index: 15;
+    pointer-events: auto;
+}
+
+.purple-star2 {
+    position: absolute;
+    top: 15%;
+    left: 45%;
+    width: 20%;
+    z-index: 15;
+    pointer-events: auto;
+    transform: scalex(-1);
+    filter: grayscale(50%);
+    pointer-events: auto;
+}
+
+.pink-star {
+    position: absolute;
+    width: 10%;
+    top: 25%;
+    left: 75%;
+    z-index: 15;
+    transform: scalex(-1);
+    pointer-events: auto;
+}
+
+.pink-star2 {
+    position: absolute;
+    width: 10%;
+    top: 40%;
+    left: 25%;
+    z-index: 15;
+    pointer-events: auto;
+}
+
+.pink-star:hover, .purple-star2:hover{
+    transform: rotate(-10deg) scale(1.1);
+    filter: drop-shadow(0 0 10px white);
+    transition: transform 0.3s ease, box-shadow 0.5s ease;      
+    transform: scalex(-1);
+    
+}
+
+.pink-star:active, .purple-star2:active {
+  animation: spinAround 5s linear forwards !important;
+  animation-delay: 0s !important;
+  cursor: grabbing;
+  filter: drop-shadow(0 0 10px white);
+  transform: scalex(-1);
+}
+
+.yellow-star:hover, .yellow-star2:hover, .pink-star2:hover, .purple-star:hover {
+  transform: rotate(-10deg) scale(1.1);
+  filter: drop-shadow(0 0 10px white);
+  transition: transform 0.3s ease, box-shadow 0.5s ease;
+}
+
+.yellow-star:active, .yellow-star2:active, .pink-star2:active, .purple-star:active {
+  animation: spinAround 5s linear forwards !important;
+  animation-delay: 0s !important;
+  cursor: grabbing;
+  filter: drop-shadow(0 0 10px white);
+}
+
+.girl-stand {
+    position: absolute;
+    z-index: 100; /* Nằm trên cùng để nhận chuột */
+    width: 12%;
+    height: auto;
+    left: 75%;
+    top: 126%;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.girl-scream {
+    position: absolute;
+    z-index: 99; /* Nằm ngay dưới để khi stand mờ đi thì nó hiện ra */
+    width: 21%;
+    height: auto;
+    left: 65%; /* Tọa độ bạn đã chỉnh */
+    top: 127%;
+    opacity: 0; /* Mặc định ẩn */
+    pointer-events: none; /* Chuột đi xuyên qua để chạm vào girl-stand */
+    transition: opacity 0.2s ease;
+}
+
+/*.scream-fx {
+    position: absolute;
+    z-index: 7;
+    top: 105%;
+    left: 15%;
+    width: 75%;
+    height: auto;
+}*/
+
+.go-away-fx {
+    position: absolute;
+    /* Bạn dùng tọa độ này để khớp với con quái vật và cô bé */
+    top: 105%;
+    left: 15%;
+    width: 75%;
+    z-index: 90; /* Nằm dưới cô bé */
+    
+    /* CHÌA KHÓA: Tính tỷ lệ khung hình 1 frame chuẩn */
+    aspect-ratio: 2360 / 1640; 
+    
+    background-image: url('image/sprite/go-awayfx.png');
+    background-size: 1000% 100%; /* 10 frames xếp ngang */
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    
+    image-rendering: pixelated;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+/* --- CÁC CLASS ĐIỀU KHIỂN ANIMATION BẰNG JS --- */
+
+/* Chạy xuôi (forward) */
+.go-away-fx.animate-forward {
+    opacity: 1;
+    visibility: visible;
+    /* 10 frames cần 9 bước nhảy từ frame 1 -> frame 10 */
+    animation: playSpriteFX 0.6s steps(9) forwards;
+}
+
+/* Chạy ngược (backward) */
+.go-away-fx.animate-backward {
+    opacity: 1;
+    visibility: visible;
+    /* Chạy ngược từ frame 10 -> frame 1 */
+    animation: playSpriteFX 0.6s steps(9) reverse forwards;
+}
+
+@keyframes playSpriteFX {
+    from { background-position: 0% 0; }
+    to { background-position: 100% 0; }
+}
+
+.monsterb {
+    position: absolute;
+    z-index: 7;
+    top: 92%;
+    left: -10%;
+    width: 110%;
+    height: auto;
+    transition: opacity 0.3s ease; /* Để ẩn đi mượt mà */
+}
+
+.c4-s5 {
+    position: absolute;
+    top: 112%;
+    left: 27%;
+    font-family: 'PixelScript', sans-serif;
+    color: #FFF;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #9D5FA5;
+    font-size: 1.4vw;
+    paint-order: stroke fill;
+    backdrop-filter: blur(2px);
+    z-index: 15;
+    animation: mistyGlow 3s ease-in-out infinite 1.5s;
+}
+
+
+/* --- MONSTER GLITCH (13 FRAMES) --- */
+.monster-glitch {
+    position: absolute;
+    top: 92%; /* Khớp y hệt vị trí monsterb */
+    left: -10%;
+    width: 110%;
+    z-index: 150; /* Đẩy lên cao hơn girl-scream */
+    aspect-ratio: 2360 / 1640; 
+    
+    background-image: url('image/sprite/monsterglitch.png');
+    background-size: 1300% 100%; /* 13 frames */
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    
+    image-rendering: pixelated;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Class kích hoạt bằng JS */
+.monster-glitch.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: playGlitch 0.6s steps(12) forwards;
+}
+
+@keyframes playGlitch {
+    from { background-position: 0% 0; }
+    to { background-position: 100% 0; }
+}
+
+
+
+    
+
+
+
+
+
+/* --- ANIMATIONS --- */
+
+@keyframes poemFadeIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -45%); /* Nhích xuống một tí */
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%); /* Về vị trí chuẩn */
+    }
+}
+
+@keyframes flashInstant {
+    0% { 
+        opacity: 1; /* Sáng rực ngay lập tức */
+    } 
+    10% {
+        opacity: 1; /* Giữ độ sáng đỉnh trong một khoảng ngắn (0.1s) */
+    }
+    100% { 
+        opacity: 0; /* Sau đó mới mờ dần */
+    }
+}
+
+.animate-flash-instant {
+    position: fixed;
+    inset: 0;
+    z-index: 1000000; /* Đảm bảo đè lên tất cả */
+    background-color: white !important;
+    animation: flashInstant 0.8s ease-out forwards;
+    pointer-events: none; /* Tránh việc cái flash ngăn cản các cú click tiếp theo */
+}
+@keyframes mediumShake {
+    0% { transform: translate(2px, 2px); }
+    20% { transform: translate(-2px, -3px); }
+    40% { transform: translate(-3px, 2px); }
+    60% { transform: translate(3px, 3px); }
+    80% { transform: translate(-2px, -2px); }
+    100% { transform: translate(2px, 2px); }
+}
+
+.apply-shake-medium {
+    animation: mediumShake 0.1s linear infinite;
+}
+
+.animate-flash { animation: flashAnimation 0.4s ease-out; }
+
+@keyframes flashAnimation {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.animate-flash { 
+    animation: flashAnimation 0.4s ease-out forwards; 
+}
+
+@keyframes darkFlicker {
+
+0% { background-color: transparent; }
+
+50% { background-color: black; opacity: 1; }
+
+100% { background-color: transparent; }
+
+}
+
+
+
+.animate-dark-flicker {
+
+animation: darkFlicker 0.2s ease-in-out;
+
+z-index: 10000;
+
+}
+
+
+
+@keyframes slideFadeIn {
+
+0% { opacity: 0; transform: translateY(30px); filter: blur(5px); text-shadow: 0 0 0px rgba(157, 95, 165, 0); }
+
+100% { opacity: 1; transform: translateY(0); filter: blur(0px); text-shadow: 0 0 10px rgba(157, 95, 165, 0.6), -5px 2px 20px rgba(157, 95, 165, 0.4), -10px -2px 30px rgba(157, 95, 165, 0.2); }
+
+}
+
+
+
+@keyframes mistyGlow {
+
+0%, 100% {
+
+/* Lớp sương mù nhẹ lúc bắt đầu */
+
+text-shadow:
+
+0 0 15px rgba(157, 95, 165, 0.8), /* Tăng opacity lên 0.8 */
+
+-5px 2px 30px rgba(157, 95, 165, 0.6), /* Tăng độ lan tỏa */
+
+-10px -2px 45px rgba(157, 95, 165, 0.4);
+
+}
+
+50% {
+
+/* Hiệu ứng bùng nổ hào quang ở giữa */
+
+text-shadow:
+
+0 0 25px rgba(180, 150, 200, 1), /* Lớp lõi sáng rực (opacity 1) */
+
+0 0 50px rgba(157, 95, 165, 0.8), /* Lan tỏa rộng hơn (50px) */
+
+10px -5px 80px rgba(217, 208, 219, 0.7), /* Tạo độ sâu cực đại (80px) */
+
+-15px 5px 100px rgba(145, 131, 146, 0.5); /* Lớp sương mù bao phủ diện rộng */
+
+}
+
+}
+
+
+
+@keyframes eyePulse {
+
+0%, 100% { opacity: 0.2; filter: brightness(0.5) drop-shadow(0 0 5px red); }
+
+50% { opacity: 1; filter: brightness(1.2) drop-shadow(0 0 15px red); }
+
+}
+
+
+
+@keyframes dustMove {
+
+0% { background-position: 0 0, 0 0; }
+
+100% { background-position: 100px 500px, 150px 300px; }
+
+}
+
+
+
+@keyframes shakeScreen {
+
+0% { transform: translate(1px, 1px) rotate(0deg); }
+
+10% { transform: translate(-1px, -2px) rotate(-1deg); }
+
+20% { transform: translate(-3px, 0px) rotate(1deg); }
+
+30% { transform: translate(3px, 2px) rotate(0deg); }
+
+40% { transform: translate(1px, -1px) rotate(1deg); }
+
+50% { transform: translate(-1px, 2px) rotate(-1deg); }
+
+60% { transform: translate(-3px, 1px) rotate(0deg); }
+
+70% { transform: translate(3px, 1px) rotate(-1deg); }
+
+80% { transform: translate(-1px, -1px) rotate(1deg); }
+
+90% { transform: translate(1px, 2px) rotate(0deg); }
+
+100% { transform: translate(1px, -2px) rotate(-1deg); }
+
+}
+
+
+
+.apply-shake { animation: shakeScreen 0.5s infinite; }
+
+
+
+@keyframes redScare {
+
+0% { opacity: 0; }
+
+10% { opacity: 1; }
+
+100% { opacity: 0; }
+
+}
+
+
+
+.animate-red-flash {
+
+position: fixed !important;
+
+inset: 0 !important;
+
+width: 2360px;
+
+height: 1640px;
+
+background-color: #660000 !important;
+
+z-index: 1000000 !important;
+
+animation: redScare 1.5s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+
+display: block !important;
+
+}
+
+
+
+@keyframes bgSlide {
+
+0% { transform: translateX(0); }
+
+100% { transform: translateX(-100px); }
+
+}
+
+@keyframes smokeRolling {
+    0% {
+        transform: scaleY(1) translateY(0);
+        filter: blur(40px);
+    }
+    100% {
+        transform: scaleY(1.2) translateY(20px);
+        filter: blur(60px);
+    }
+}
+
+@keyframes pixelBreathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes hintFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hint-fade-in {
+    animation: hintFade 1s ease forwards, hintBlink 2s infinite 1s;
+}
+
+@keyframes hintBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes spinAround {
+  from {
+    transform: rotate(20deg);
+  }
+  to {
+    transform: rotate(740deg);
+  }
+}
+
+
+@keyframes lightShake {
+    0% { transform: translate(1px, 1px); }
+    25% { transform: translate(-1px, -1px); }
+    50% { transform: translate(1px, -1px); }
+    75% { transform: translate(-1px, 1px); }
+    100% { transform: translate(0, 0); }
+}
+
+.apply-light-shake {
+    animation: lightShake 0.1s ease-in-out infinite;
+}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Meta tags in HTML provide metadata or additional information about an HTML document. -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <!-- Title of the web page -->
+    <title>a1</title>
+    <!-- Link to the CSS file -->
+    <link href="a1style.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://fonts.google.com/knowledge/using_type/using_web_fonts_from_a_font_delivery_service"
+      rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <img src="image/sec5/curtain.PNG" class="curtain" width="100%" height="auto"> 
+    <div class="light-flash" id="light-flash"></div>
+    <div id="preloader">
+    <div class="loader-content">
+        <div class="loading-sprites">
+                <div class="preload-sprite crumble-preload"></div>
+                <div class="preload-sprite goaway-preload"></div>
+                <div class="preload-sprite glitch-preload"></div>
+            </div>
+        <p class="loading-text">LOADING...</p>
+        <div class="progress-container">
+            <div class="progress-bar" id="load-bar"></div>
+        </div>
+    </div>
+ </div>
+    <div class="section1">
+      <div class="light-flash" id="light-flash"></div>
+      <div class="intro-screen" id="intro-screen">
+      <img src="image/sec1/intro-bg.PNG" class="intro-bg">
+      <img src="image/sec1/intro-light.PNG" class="intro-light">
+      <img src="image/sec1/khung-intro.PNG" class="intro-frame">
+      <img src="image/sec1/intro-logo.PNG" class="intro-logo">
+      <div class="play-text-wrapper">
+        <p id="play-btn" class="play-text">START</p>
+        <p id="sound-toggle" class="sound-toggle-text">[ SOUND: ON ]</p>
+      </div>
+
+    </div>
+    <div class="dust-overlay"></div>
+
+    <div class="container-room-on" id="room-on-layer">
+        <img src="image/sec1/sec1-on.PNG" class="room-on" width="100%" height="auto">
+        
+        <img src="image/sec1/khung-on.PNG" class="khung" id="on" width="100%" height="auto">
+        
+        <img src="image/sec1/light.PNG" alt="Quạt trần" class="ceiling-fan">
+        <img src="image/sec1/door.PNG" alt="cửa" class="door">
+        <audio id="knocking" src="sound fx/doorknock.mp3" preload="auto"></audio>
+        <audio id="switch" src="sound fx/switch.mp3" preload="auto"></audio>
+        <audio id="pounced-snd" src="sound fx/pounced.ogg" preload="auto"></audio>
+        <audio id="start-snd" src="sound fx/start.ogg" preload="auto"></audio>
+        <audio id="crumble-snd" src="sound fx/crumble.mp3" preload="auto"></audio>
+    </div>
+
+    <div class="container-room-off" id="room-off-layer" style="display: none;">
+        <img src="image/sec1/sec1-off.PNG" class="room-off" width="100%" height="auto">
+        
+        <img src="image/sec1/khung-off.PNG" class="khung" id="off" width="100%" height="auto">
+        
+        <p class="first-sentence" id="câu1">There's ...</p>
+        <p class="first-sentence" id="câu1b">...and I don't know what to do!</p>
+        
+        <img src="image/sec1/light-off.PNG" alt="Quạt tối" class="ceiling-fan-off">
+        <img src="image/sec1/closet.png" alt="tủ" class="wardrobe-off">
+        <img src="image/sec1/logo.svg" alt="logo" class="logo">
+        <img src="image/sec1/red-eyes 1.svg" class="eyes">
+        
+        <p class="second-sentence" id="câu2">Have you ever...</p>
+        <p class="second-sentence" id="câu2b">...seen him?</p>
+        <p class="third-sentence" id="câu3">Has he ever <span id="pounced-trigger" style="cursor: pointer;">pounced</span> on you?</p>
+    </div>
+
+    <div class="section2">
+        <div class="smoke-top"></div>
+        <div class="girl-bubble" id="girl-bubble">
+        <img src="image/sec2/chat-bbl.png">
+        <p>...I wonder what he looks like!</p>
+    </div>
+        <img src="image/sec2/stars.png" class="stars" width="100%" height="auto">
+        <img src="image/sec2/crayon1.PNG" class="crayon" id="purple">
+        <img src="image/sec2/crayon2.PNG" class="crayon" id="red">
+        <img src="image/sec2/crayon3.PNG" class="crayon" id="black">
+        <img src="image/sec2/sketchbook.PNG" class="sketchbook">
+        <img src="image/sec2/shadow-sec3.png" class="shadow-sec2" width="100%" height="auto">
+        <img src="image/sec2/girl.PNG" class="girl" width="100%" height="auto">
+        <img src="image/sec2/plushie-1.PNG" class="plushie plushie-1" width="100%" height="auto">
+        <img src="image/sec2/plushie-2.PNG" class="plushie plushie-2" id="plushie-2" width="100%" height="auto">
+        <img src="image/sec2/blanketA.PNG" class="blanketA" width="100%" height="auto">
+            <!--   <img src="image/sec3/footprint.gif" class="footprint" id="footprint" width="100%" height="auto">--> 
+        <p class="size-sentence">What about his size!! </p>
+        <img src="image/sec2/blanket4.PNG" class="blanketB" width="100%" height="auto">
+        <img src="image/sec2/blanket5.PNG" class="blanketC" width="100%" height="auto">
+        <img src="image/sec2/monsterhint.png" class="monsterhint" width="100%" height="auto">
+        <img src="image/sec2/sec2-end.png" class="sec2-end" width="100%" height="auto">
+        <div class="crumble-pp" id="crumble-paper">
+    <div class="crumble-sprite"></div>
+    <img src="image/sec2/crumble-pp.PNG" class="crumble-static">
+  </div>
+  <div class="drawing-overlay" id="drawing-view" style="display: none;">
+        <div class="drawing-container">
+            <img src="image/sec2/drawing-none.PNG" id="current-drawing" class="drawing-img" alt="creature drawing">
+            
+            <p class="drawing-poem">
+                Is he 
+                <span id="trigger-purple" class="word-trigger">Purple</span> 
+                with 
+                <span id="trigger-eyes" class="word-trigger">Red Eyes</span>?
+            </p>
+        </div>
+    </div>
+    <div class="menu-onbed" id="menu-trigger">
+    <img src="image/sec2/menu-onbed.PNG" alt="menu item">
+</div>
+
+<div class="menu-overlay" id="menu-view" style="display: none;">
+    <div class="menu-container">
+        <img src="image/sec2/menu.PNG" class="menu-full-img">
+        <p class="menu-poem">I wonder what he likes to eat.</p>
+    </div>
+        <audio id="squeak-snd" src="sound fx/squeak.mp3" preload="auto"></audio>
+        <audio id="squeak2-snd" src="sound fx/squeak2.mp3" preload="auto"></audio>
+    </div>
+</div>
+<div class="section3" id="sec3-container">
+    <p class="c1-s3"> Tonight I'm gonna catch him!</p>
+    <p class="c2-s3">I'll set a real big trap!</p>
+    <img src="image/sec3/s3-bg.PNG" class="sec3-bg" width="100%" height="auto">
+    <img src="image/sec3/trap.PNG" class="trap" id="trap" width="50%" height="auto">
+    <img src="image/sec3/closed-trap.PNG" class="closed-trap" width="50%" height="auto">
+    <img src="image/sec3/footprint.gif" class="footprint" id="footprint2" width="50%" height="auto">
+    <img src="image/sec3/whistle.PNG" class="whistle" id="whistle">
+    <p class="c3-s3">Then I'll train him really well.</p>
+    <p class="c4-s3">He'll answer when I <span id="clap-trigger">clap</span>!</p>
+    <img src="image/sec4/sec3-end.PNG" class="sec3-end" width="100%" height="auto">
+    <audio src="sound fx/whistle.mp3" id="whistle-snd" preload="auto"></audio>
+    <audio src="sound fx/trap.mp3" id="trap-snd" preload="auto"></audio>
+    <audio src="sound fx/clap.mp3" id="clap-snd" preload="auto"></audio>
+</div>
+<div class="section4" id="sec4-container">
+    <div id="sec4-flashlight"></div>
+    <img src="image/sec4/sec4-start.PNG" class="sec4-start" width="100%" height="auto">
+    <img src="image/sec4/sec4-bg.PNG" class="sec4-bg" width="100%" height="auto">
+    <img src="image/sec4/huff.svg" class="breath-element huff">
+    <img src="image/sec4/and 1.svg" class="breath-element and">
+    <img src="image/sec4/puff.svg" class="breath-element puff">
+
+    <img src="image/sec4/sec4-closet.PNG" class="closet-door" id="closet-closed">
+    <img src="image/sec4/open-closet.PNG" class="closet-door" id="closet-opened" style="display: none;">
+
+    <div class="chatbox-container" id="chatbox-sec4">
+        <img src="image/sec4/chatbox.PNG" class="chatbox-img">
+        <p class="poem-text" id="sec4-poem">When I looked up in that closet,...</p>
+        <span class="next-hint">Press [X] to continue</span>
+    </div>
+    <audio id="closet-snd" src="sound fx/closet.ogg" preload="auto"></audio>
+</div>
+<div class="section5" id="sec5a-container">
+    <p class="c1-s5">Could it be he wants to eat me?</p>
+    <p class="c2-s5" id="lid-poem">Maybe I'm his favorite tray.</p>
+    <img src="image/sec5/sec5-bg.PNG" class="sec5-bg" width="100%" height="auto">
+    <img src="image/sec4/sec4-start.PNG" class="sec5-start" width="100%" height="auto">
+    <img src="image/sec5/table.PNG" class="table" width="100%" height="auto">
+    <img src="image/sec5/lid.PNG" class="lid">
+    <img src="image/sec5/monsterPNG.PNG" class="monsterA" id="monster" width="100%" height="auto">
+    <audio id="monster-snd" src="sound fx/monsterA.mp3" preload="auto"></audio>
+</div> 
+<div class="section5b" id="sec5b-container">
+    <img src="image/sec5/yellow-star.PNG" class="yellow-star">
+    <img src="image/sec5/yellow-star.PNG" class="yellow-star2">
+    <img src="image/sec5/purple-star.PNG" class="purple-star">
+    <img src="image/sec5/purple-star.PNG" class="purple-star2">
+    <img src="image/sec5/pink-star.PNG" class="pink-star">
+    <img src="image/sec5/pink-star.PNG" class="pink-star2">
+    <img src="image/sec5/sec5b-bg.PNG" class="sec5b-bg" width="100%" height="auto">
+    <img src="image/sec5/sec5b-floor.PNG" class="sec5-floor" width="100%" height="auto">
+    <img src="image/sec5/shadow.PNG" class="sec5-shadow" width="100%" height="auto">
+    <img src="image/sec4/sec4-start.PNG" class="sec5-topshadow" width="100%" height="auto">
+    <p class="c3-s5">And if he comes to get me,...</p>
+    <img src="image/sec5/girl-stand 1.png" class="girl-stand" id="girl-trigger">
+    <img src="image/sec5/girl-scream 1.png" class="girl-scream" id="girl-scream-img">
+ <!-- <img src="image/sec5/IMG_2101.PNG" class="scream-fx"> -->
+    <div class="go-away-fx" id="go-away-sprite"></div>
+    <div class="monster-glitch" id="glitch-sprite"></div>
+    <img src="image/sec5/monsterB.PNG" class="monsterb" id="monsterb-img">
+    <p class="c4-s5">I'll scream loudly</p>
+    <audio id="goaway1-snd" src="sound fx/goaway1.mp3" preload="auto"></audio>
+    <audio id="goaway2-snd" src="sound fx/goaway2.mp3" preload="auto"></audio>
+</div>
+    <audio id="bgm" src="sound fx/bg-music.mp3" loop preload="auto"></audio>
+    <script src="script.js"></script>
+  </body>
+</html>
